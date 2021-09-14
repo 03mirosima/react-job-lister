@@ -8,8 +8,8 @@ function JobList() {
   const dispatch = useDispatch();
   const allJobs = useSelector(selectAllJobs);
   const searchText = useSelector(({ jobs }) => jobs.searchText);
+  const selectedCompany = useSelector(({ jobs }) => jobs.selectedCompany);
   const [filteredData, setFilteredData] = useState(null);
-  console.log(allJobs);
 
   useEffect(() => {
     dispatch(getJobs());
@@ -17,22 +17,25 @@ function JobList() {
 
   useEffect(() => {
     function getFilteredArray() {
-      if (searchText.length === 0) {
+      if (searchText.length === 0 && selectedCompany.length === 0) {
         return allJobs;
       }
       return allJobs.filter((item) => {
+        if (selectedCompany.length > 0 && item.company !== selectedCompany) {
+          return console.log(item, "item");
+        }
         return item.name.toLowerCase().includes(searchText.toLowerCase());
       });
     }
-
+    console.log(filteredData);
     if (allJobs) {
       setFilteredData(getFilteredArray());
     }
-  }, [allJobs, searchText]);
+  }, [allJobs, searchText, selectedCompany]);
   return (
-    <div>
-      {filteredData &&
-        (filteredData.length > 0 ? (
+    <div className="d-flex flex-column justify-content-center">
+      {searchText &&
+        (searchText.length > 0 || selectedCompany.length > 0 ? (
           filteredData.map((a) => (
             <div key={a.id} className="card-wrapper d-flex flex-col">
               <div className="card-image">
@@ -46,8 +49,8 @@ function JobList() {
             </div>
           ))
         ) : (
-          <div className="">
-            <h1>Not Found</h1>
+          <div className="text-center">
+            <h3>Can't find a person with that name!</h3>
           </div>
         ))}
     </div>

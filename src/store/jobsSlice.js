@@ -14,12 +14,19 @@ const jobsSlice = createSlice({
   name: "jobs",
   initialState: {
     searchText: "",
+    selectedCompany: "",
     list: [],
   },
   reducers: {
     setJobSearchText: {
       reducer: (state, action) => {
         state.searchText = action.payload;
+      },
+      prepare: (event) => ({ payload: event.target.value || "" }),
+    },
+    setSelectedCompany: {
+      reducer: (state, action) => {
+        state.selectedCompany = action.payload;
       },
       prepare: (event) => ({ payload: event.target.value || "" }),
     },
@@ -32,4 +39,5 @@ const jobsSlice = createSlice({
 });
 export const selectAllJobs = (state) => state.jobs.list;
 export const { setJobSearchText } = jobsSlice.actions;
+export const { setSelectedCompany } = jobsSlice.actions;
 export default jobsSlice.reducer;
