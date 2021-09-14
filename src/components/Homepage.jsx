@@ -1,4 +1,7 @@
-const a = { name: "Miray" };
+import React from "react";
 
-console.log(a, "a");
-alert(a.name);
+function Homepage() {
+  return <div className="m-0 text-danger">dddd</div>;
+}
+
+export default Homepage;
