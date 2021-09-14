@@ -13,7 +13,16 @@ export const getJobs = createAsyncThunk("jobs/getJobs", async () => {
 const jobsSlice = createSlice({
   name: "jobs",
   initialState: {
+    searchText: "",
     list: [],
+  },
+  reducers: {
+    setJobSearchText: {
+      reducer: (state, action) => {
+        state.searchText = action.payload;
+      },
+      prepare: (event) => ({ payload: event.target.value || "" }),
+    },
   },
   extraReducers: {
     [getJobs.fulfilled]: (state, { payload }) => {
@@ -21,5 +30,6 @@ const jobsSlice = createSlice({
     },
   },
 });
-
+export const selectAllJobs = (state) => state.jobs.list;
+export const { setJobSearchText } = jobsSlice.actions;
 export default jobsSlice.reducer;
