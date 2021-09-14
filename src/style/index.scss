@@ -1,0 +1,11 @@
+$mainColor: orange;
+
+body {
+  background-color: $mainColor;
+  color: yellow;
+  display: flex;
+  justify-content: center;
+  h1 {
+    color: blue;
+  }
+}

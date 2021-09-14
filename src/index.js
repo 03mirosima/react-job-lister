@@ -1,4 +1,4 @@
-import "./style/index.css";
+import "./style/index.scss";
 const a = { name: "Miray" };
 
 console.log(a, "a");
