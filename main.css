@@ -13,33 +13,64 @@
   \****************************************************************************************************************/
 body {
   margin: 0 auto;
-  background-color: #a1a3a6;
+  background-color: #3d464d;
 }
-body .search-list-wrapper {
-  margin: 20px;
-  border-radius: 20px;
-  background-color: #88c453;
-}
-body .search-list-wrapper .search-input-wrapper {
-  width: 100%;
-  display: flex;
+body .app-wrapper {
+  flex-direction: row;
   justify-content: center;
-  padding: 10px;
-  background-color: #c54a52;
-  border-radius: 20px 20px 0px 0px;
+  align-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0 0 0;
 }
-body .filter-wrapper {
-  margin: 20px;
-  border-radius: 20px;
-  background-color: #539fc4;
-}
-body .list-wrapper {
-  overflow-y: scroll;
-  height: 90vh;
-  overflow-x: hidden;
+body .app-wrapper .search-input {
+  margin-right: 20px;
+  border-radius: 5px;
+  background: #f5f7fa;
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 6px 10px;
+  height: 45px;
   padding: 20px;
 }
-body .list-wrapper .card-wrapper {
+body .app-wrapper .search-button {
+  width: 130px;
+  border-radius: 5px;
+  box-shadow: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 6px 10px;
+  background: #f5f7fa;
+}
+body .app-wrapper .filter-button {
+  height: 45px;
+  box-shadow: none;
+  background: #f5f7fa;
+}
+body .app-wrapper .search-list-wrapper {
+  margin: 20px;
+  border-radius: 20px;
+  background-color: #212831;
+  color: white;
+}
+body .app-wrapper .search-list-wrapper .search-input-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: flex-start;
+  background-color: #f5f7fa;
+  border-radius: 20px 20px 0px 0px;
+}
+body .app-wrapper .filter-wrapper {
+  margin: 20px;
+  border-radius: 20px;
+  background-color: #f5f7fa;
+  padding: 20px;
+}
+body .app-wrapper .list-wrapper {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 83vh;
+  width: 100%;
+  padding: 20px;
+}
+body .app-wrapper .list-wrapper .card-wrapper {
   display: flex;
   background: #eee;
   padding: 10px 16px 10px 10px;
@@ -47,8 +78,9 @@ body .list-wrapper .card-wrapper {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.2) 3px 6px 10px;
   border: solid 1px #ccc;
+  color: black;
 }
-body .list-wrapper .card-wrapper img {
+body .app-wrapper .list-wrapper .card-wrapper img {
   min-width: 80px;
   height: 80px;
   border-radius: 5px;

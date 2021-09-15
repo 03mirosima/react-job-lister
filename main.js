@@ -3513,17 +3513,18 @@ function FilterResult() {
     className: "d-flex flex-column justify-content-center",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       placeholder: "Job Title",
-      className: "search-input",
+      className: "search-input mx-0 my-2",
       value: jobSearchText,
       onChange: function onChange(ev) {
         return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setJobSearchText)(ev));
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      className: "search-input mx-0 mb-2",
       value: selectedArea,
       onChange: function onChange(ev) {
         return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setSelectedArea)(ev));
       },
-      placeholder: "Company-Autocomplete",
+      placeholder: "Area-Autocomplete",
       list: "area-list"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("datalist", {
       id: "area-list",
@@ -3533,10 +3534,11 @@ function FilterResult() {
         }, a.id);
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      className: "filter-button",
       onClick: function onClick() {
         return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setFilteredData)(getFilteredArray()));
       },
-      children: "Search"
+      children: "Filter"
     })]
   });
 }
@@ -3576,17 +3578,17 @@ function Homepage() {
     return jobs.nameSearchText;
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    className: "container d-flex",
+    className: " d-flex app-wrapper",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      className: "col-3 justify-content-center filter-wrapper ".concat(nameSearchText.length > 0 ? "d-flex" : "d-none"),
+      className: "justify-content-center filter-wrapper ".concat(nameSearchText.length > 0 ? "d-flex" : "d-none"),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_FilterResult__WEBPACK_IMPORTED_MODULE_3__["default"], {})
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "d-flex flex-column justify-content-center align-items-center search-list-wrapper ".concat(nameSearchText.length > 0 ? "col-9" : "col-12"),
+      className: "d-flex flex-column justify-content-center align-items-center search-list-wrapper",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "col-2 search-input-wrapper",
+        className: " search-input-wrapper",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_SearchJobs__WEBPACK_IMPORTED_MODULE_2__["default"], {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "col-10 list-wrapper",
+        className: " list-wrapper",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_JobList__WEBPACK_IMPORTED_MODULE_1__["default"], {})
       })]
     })]
@@ -3659,7 +3661,7 @@ function JobList() {
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "text-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
-        children: "Can't find a person with that name!"
+        children: "Can't find it!"
       })
     })
   });
@@ -3726,20 +3728,22 @@ function SearchJobs() {
         return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setNameSearchText)(ev));
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      className: "search-input",
       value: selectedCompany,
       onChange: function onChange(ev) {
         return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setSelectedCompany)(ev));
       },
       placeholder: "Company-Autocomplete",
-      list: "europe-countries"
+      list: "company-list"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("datalist", {
-      id: "europe-countries",
+      id: "company-list",
       children: allJobs.map(function (a) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
           children: a.company
         }, a.id);
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      className: "search-button",
       onClick: function onClick() {
         return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setSearchedData)(getFilteredArray()));
       },
