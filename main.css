@@ -80,7 +80,7 @@ body .app-wrapper .list-wrapper .card-wrapper {
   border: solid 1px #ccc;
   color: black;
 }
-body .app-wrapper .list-wrapper .card-wrapper img {
+body .app-wrapper .list-wrapper .card-wrapper .card-image {
   min-width: 80px;
   height: 80px;
   border-radius: 5px;
