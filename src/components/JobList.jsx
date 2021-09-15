@@ -14,7 +14,7 @@ function JobList() {
 
   return (
     <div className="d-flex flex-column justify-content-center">
-      {nameSearchText.length > 0 || selectedCompany.length > 0 ? (
+      {searchedData.length > 0 ? (
         searchedData.map((a) => (
           <div key={a.id} className="card-wrapper d-flex flex-col">
             <div className="card-image">

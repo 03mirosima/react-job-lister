@@ -24,9 +24,10 @@ function SearchJobs() {
       return allJobs;
     }
     return allJobs.filter((item) => {
-      if (selectedCompany.length > 0 || item.company !== selectedCompany) {
-      }
-      return item.name.toLowerCase().includes(nameSearchText.toLowerCase());
+      return (
+        item.name.toLowerCase().includes(nameSearchText.toLowerCase()) &&
+        item.company.toLowerCase().includes(selectedCompany.toLowerCase())
+      );
     });
   }
 
