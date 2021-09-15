@@ -2,7 +2,7 @@
 
 body {
   margin: 0 auto;
-  background-color: #35404a;
+  background-color: #3d464d;
   .app-wrapper {
     flex-direction: row;
     justify-content: center;
@@ -13,7 +13,7 @@ body {
     .search-input {
       margin-right: 20px;
       border-radius: 5px;
-      background: #485663;
+      background: #f5f7fa;
 
       box-shadow: rgba(0, 0, 0, 0.2) 3px 6px 10px;
       height: 45px;
@@ -23,17 +23,19 @@ body {
       width: 130px;
       border-radius: 5px;
       box-shadow: none;
-      background: #485663;
+      box-shadow: rgba(0, 0, 0, 0.2) 3px 6px 10px;
+      background: #f5f7fa;
     }
     .filter-button {
       height: 45px;
       box-shadow: none;
-      background: #485663;
+      background: #f5f7fa;
     }
     .search-list-wrapper {
       margin: 20px;
       border-radius: 20px;
-      background-color: #2d363f;
+      background-color: #212831;
+      color: white;
 
       .search-input-wrapper {
         width: 100%;
@@ -41,7 +43,7 @@ body {
         flex-wrap: wrap;
         padding: 20px;
         justify-content: flex-start;
-        background-color: #333b46;
+        background-color: #f5f7fa;
         border-radius: 20px 20px 0px 0px;
       }
     }
@@ -49,11 +51,12 @@ body {
     .filter-wrapper {
       margin: 20px;
       border-radius: 20px;
-      background-color: #a1a3a6;
+      background-color: #f5f7fa;
       padding: 20px;
     }
     .list-wrapper {
-      overflow: scroll;
+      overflow-y: scroll;
+      overflow-x: hidden;
       height: 83vh;
       width: 100%;
       padding: 20px;
@@ -66,6 +69,7 @@ body {
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.2) 3px 6px 10px;
         border: solid 1px #ccc;
+        color: black;
         img {
           min-width: 80px;
           height: 80px;
