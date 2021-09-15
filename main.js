@@ -3458,6 +3458,93 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./src/components/FilterResult.jsx":
+/*!*****************************************!*\
+  !*** ./src/components/FilterResult.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/jobsSlice */ "./src/store/jobsSlice.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+function FilterResult() {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var jobSearchText = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref) {
+    var jobs = _ref.jobs;
+    return jobs.jobSearchText;
+  });
+  var allJobs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.selectAllJobs);
+  var searchedData = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref2) {
+    var jobs = _ref2.jobs;
+    return jobs.searchedData;
+  });
+  var selectedArea = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref3) {
+    var jobs = _ref3.jobs;
+    return jobs.selectedArea;
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.getJobs)());
+  }, [dispatch]);
+
+  function getFilteredArray() {
+    if (jobSearchText.length === 0 && selectedArea.length === 0) {
+      return searchedData;
+    }
+
+    return searchedData.filter(function (item) {
+      return item.job.toLowerCase().includes(jobSearchText.toLowerCase()) && item.area.toLowerCase().includes(selectedArea.toLowerCase());
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "d-flex flex-column justify-content-center",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      placeholder: "Job Title",
+      className: "search-input",
+      value: jobSearchText,
+      onChange: function onChange(ev) {
+        return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setJobSearchText)(ev));
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      value: selectedArea,
+      onChange: function onChange(ev) {
+        return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setSelectedArea)(ev));
+      },
+      placeholder: "Company-Autocomplete",
+      list: "area-list"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("datalist", {
+      id: "area-list",
+      children: searchedData.map(function (a) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+          children: a.area
+        }, a.id);
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: function onClick() {
+        return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setFilteredData)(getFilteredArray()));
+      },
+      children: "Search"
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FilterResult);
+
+/***/ }),
+
 /***/ "./src/components/Homepage.jsx":
 /*!*************************************!*\
   !*** ./src/components/Homepage.jsx ***!
@@ -3472,8 +3559,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _JobList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JobList */ "./src/components/JobList.jsx");
 /* harmony import */ var _SearchJobs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SearchJobs */ "./src/components/SearchJobs.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _FilterResult__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FilterResult */ "./src/components/FilterResult.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -3482,23 +3571,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Homepage() {
-  var searchText = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (_ref) {
+  var nameSearchText = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (_ref) {
     var jobs = _ref.jobs;
-    return jobs.searchText;
+    return jobs.nameSearchText;
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "container d-flex",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: "col-3 justify-content-center filter-wrapper ".concat(searchText.length > 0 ? "d-flex" : "d-none"),
-      children: "a"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      className: "d-flex flex-column justify-content-center align-items-center search-list-wrapper ".concat(searchText.length > 0 ? "col-9" : "col-12"),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "col-3 justify-content-center filter-wrapper ".concat(nameSearchText.length > 0 ? "d-flex" : "d-none"),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_FilterResult__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "d-flex flex-column justify-content-center align-items-center search-list-wrapper ".concat(nameSearchText.length > 0 ? "col-9" : "col-12"),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "col-2 search-input-wrapper",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SearchJobs__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_SearchJobs__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "col-10 list-wrapper",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_JobList__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_JobList__WEBPACK_IMPORTED_MODULE_1__["default"], {})
       })]
     })]
   });
@@ -3519,12 +3608,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_jobsSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/jobsSlice */ "./src/store/jobsSlice.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/jobsSlice */ "./src/store/jobsSlice.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -3534,73 +3621,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function JobList() {
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
-  var allJobs = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_jobsSlice__WEBPACK_IMPORTED_MODULE_3__.selectAllJobs);
-  var searchText = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (_ref) {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var nameSearchText = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref) {
     var jobs = _ref.jobs;
-    return jobs.searchText;
+    return jobs.nameSearchText;
   });
-  var selectedCompany = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (_ref2) {
+  var selectedCompany = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref2) {
     var jobs = _ref2.jobs;
     return jobs.selectedCompany;
   });
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
-      _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
-      filteredData = _useState2[0],
-      setFilteredData = _useState2[1];
-
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_3__.getJobs)());
-  }, [dispatch]);
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    function getFilteredArray() {
-      if (searchText.length === 0 && selectedCompany.length === 0) {
-        return allJobs;
-      }
-
-      return allJobs.filter(function (item) {
-        if (selectedCompany.length > 0 && item.company !== selectedCompany) {
-          return console.log(item, "item");
-        }
-
-        return item.name.toLowerCase().includes(searchText.toLowerCase());
-      });
-    }
-
-    console.log(filteredData);
-
-    if (allJobs) {
-      setFilteredData(getFilteredArray());
-    }
-  }, [allJobs, searchText, selectedCompany]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  var searchedData = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref3) {
+    var jobs = _ref3.jobs;
+    return jobs.searchedData;
+  });
+  console.log(searchedData, "aa");
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "d-flex flex-column justify-content-center",
-    children: searchText && (searchText.length > 0 || selectedCompany.length > 0 ? filteredData.map(function (a) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: searchedData.length > 0 ? searchedData.map(function (a) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "card-wrapper d-flex flex-col",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "card-image",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
             src: a.image
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "card-info d-flex flex-column",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h5", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
             children: a.name
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h6", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h6", {
             children: a.company
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h6", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h6", {
             children: a.job
           })]
         })]
       }, a.id);
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "text-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
         children: "Can't find a person with that name!"
       })
-    }))
+    })
   });
 }
 
@@ -3630,45 +3691,59 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function SearchJobs() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  var searchText = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref) {
+  var nameSearchText = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref) {
     var jobs = _ref.jobs;
-    return jobs.searchText;
+    return jobs.nameSearchText;
   });
+  var allJobs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.selectAllJobs);
   var selectedCompany = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (_ref2) {
     var jobs = _ref2.jobs;
     return jobs.selectedCompany;
   });
-  var companies = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.selectAllJobs);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.getJobs)());
+  }, [dispatch]);
 
-  function handleSearching() {
-    dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setJobSearchText)());
-    dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setSelectedCompany)());
+  function getFilteredArray() {
+    if (nameSearchText.length === 0 && selectedCompany.length === 0) {
+      return allJobs;
+    }
+
+    return allJobs.filter(function (item) {
+      return item.name.toLowerCase().includes(nameSearchText.toLowerCase()) && item.company.toLowerCase().includes(selectedCompany.toLowerCase());
+    });
   }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       placeholder: "Name",
       className: "search-input",
-      value: searchText,
+      value: nameSearchText,
       onChange: function onChange(ev) {
-        return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setJobSearchText)(ev));
+        return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setNameSearchText)(ev));
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       value: selectedCompany,
       onChange: function onChange(ev) {
         return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setSelectedCompany)(ev));
       },
-      list: "europe-countries",
-      placeholder: "Company-Autocomplete"
+      placeholder: "Company-Autocomplete",
+      list: "europe-countries"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("datalist", {
       id: "europe-countries",
-      children: companies.map(function (a) {
+      children: allJobs.map(function (a) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
           children: a.company
         }, a.id);
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: function onClick() {
+        return dispatch((0,_store_jobsSlice__WEBPACK_IMPORTED_MODULE_2__.setSearchedData)(getFilteredArray()));
+      },
+      children: "Search"
     })]
   });
 }
@@ -3688,8 +3763,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getJobs": () => (/* binding */ getJobs),
 /* harmony export */   "selectAllJobs": () => (/* binding */ selectAllJobs),
-/* harmony export */   "setJobSearchText": () => (/* binding */ setJobSearchText),
+/* harmony export */   "setNameSearchText": () => (/* binding */ setNameSearchText),
 /* harmony export */   "setSelectedCompany": () => (/* binding */ setSelectedCompany),
+/* harmony export */   "setSearchedData": () => (/* binding */ setSearchedData),
+/* harmony export */   "setJobSearchText": () => (/* binding */ setJobSearchText),
+/* harmony export */   "setFilteredData": () => (/* binding */ setFilteredData),
+/* harmony export */   "setSelectedArea": () => (/* binding */ setSelectedArea),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
@@ -3732,14 +3811,18 @@ var getJobs = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_4__.createAsyncThunk)
 var jobsSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_4__.createSlice)({
   name: "jobs",
   initialState: {
-    searchText: "",
+    list: [],
+    nameSearchText: "",
     selectedCompany: "",
-    list: []
+    searchedData: [],
+    jobSearchText: "",
+    selectedArea: "",
+    filteredData: []
   },
   reducers: {
-    setJobSearchText: {
+    setNameSearchText: {
       reducer: function reducer(state, action) {
-        state.searchText = action.payload;
+        state.nameSearchText = action.payload;
       },
       prepare: function prepare(event) {
         return {
@@ -3756,6 +3839,36 @@ var jobsSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_4__.createSlice)({
           payload: event.target.value || ""
         };
       }
+    },
+    setSearchedData: {
+      reducer: function reducer(state, action) {
+        state.searchedData = action.payload;
+      }
+    },
+    setJobSearchText: {
+      reducer: function reducer(state, action) {
+        state.jobSearchText = action.payload;
+      },
+      prepare: function prepare(event) {
+        return {
+          payload: event.target.value || ""
+        };
+      }
+    },
+    setSelectedArea: {
+      reducer: function reducer(state, action) {
+        state.selectedArea = action.payload;
+      },
+      prepare: function prepare(event) {
+        return {
+          payload: event.target.value || ""
+        };
+      }
+    },
+    setFilteredData: {
+      reducer: function reducer(state, action) {
+        state.searchedData = action.payload;
+      }
     }
   },
   extraReducers: (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])({}, getJobs.fulfilled, function (state, _ref2) {
@@ -3766,9 +3879,13 @@ var jobsSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_4__.createSlice)({
 var selectAllJobs = function selectAllJobs(state) {
   return state.jobs.list;
 };
-var setJobSearchText = jobsSlice.actions.setJobSearchText;
-
-var setSelectedCompany = jobsSlice.actions.setSelectedCompany;
+var _jobsSlice$actions = jobsSlice.actions,
+    setNameSearchText = _jobsSlice$actions.setNameSearchText,
+    setSelectedCompany = _jobsSlice$actions.setSelectedCompany,
+    setSearchedData = _jobsSlice$actions.setSearchedData,
+    setJobSearchText = _jobsSlice$actions.setJobSearchText,
+    setFilteredData = _jobsSlice$actions.setFilteredData,
+    setSelectedArea = _jobsSlice$actions.setSelectedArea;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (jobsSlice.reducer);
 
@@ -39394,46 +39511,6 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _arrayLikeToArray)
-/* harmony export */ });
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _arrayWithHoles)
-/* harmony export */ });
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js ***!
@@ -39542,66 +39619,6 @@ function _extends() {
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _iterableToArrayLimit)
-/* harmony export */ });
-function _iterableToArrayLimit(arr, i) {
-  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-
-  if (_i == null) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-
-  var _s, _e;
-
-  try {
-    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _nonIterableRest)
-/* harmony export */ });
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js":
 /*!******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js ***!
@@ -39680,55 +39697,6 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   }
 
   return target;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _slicedToArray)
-/* harmony export */ });
-/* harmony import */ var _arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithHoles.js */ "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js");
-/* harmony import */ var _iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArrayLimit.js */ "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js");
-/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js");
-/* harmony import */ var _nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nonIterableRest.js */ "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js");
-
-
-
-
-function _slicedToArray(arr, i) {
-  return (0,_arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || (0,_iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arr, i) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(arr, i) || (0,_nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _unsupportedIterableToArray)
-/* harmony export */ });
-/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js");
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(o, minLen);
 }
 
 /***/ }),
