@@ -29,7 +29,7 @@ function JobList() {
         ))
       ) : (
         <div className="text-center">
-          <h3>Can't find a person with that name!</h3>
+          <h3>Can't find it!</h3>
         </div>
       )}
     </div>

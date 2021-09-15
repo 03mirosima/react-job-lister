@@ -40,17 +40,21 @@ function SearchJobs() {
         onChange={(ev) => dispatch(setNameSearchText(ev))}
       />
       <input
+        className="search-input"
         value={selectedCompany}
         onChange={(ev) => dispatch(setSelectedCompany(ev))}
         placeholder="Company-Autocomplete"
-        list="europe-countries"
+        list="company-list"
       />
-      <datalist id="europe-countries">
+      <datalist id="company-list">
         {allJobs.map((a) => (
           <option key={a.id}>{a.company}</option>
         ))}
       </datalist>
-      <button onClick={() => dispatch(setSearchedData(getFilteredArray()))}>
+      <button
+        className="search-button"
+        onClick={() => dispatch(setSearchedData(getFilteredArray()))}
+      >
         Search
       </button>
     </>

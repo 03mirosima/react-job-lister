@@ -37,14 +37,15 @@ function FilterResult() {
     <div className="d-flex flex-column justify-content-center">
       <input
         placeholder="Job Title"
-        className="search-input"
+        className="search-input mx-0 my-2"
         value={jobSearchText}
         onChange={(ev) => dispatch(setJobSearchText(ev))}
       />
       <input
+        className="search-input mx-0 mb-2"
         value={selectedArea}
         onChange={(ev) => dispatch(setSelectedArea(ev))}
-        placeholder="Company-Autocomplete"
+        placeholder="Area-Autocomplete"
         list="area-list"
       />
       <datalist id="area-list">
@@ -52,8 +53,11 @@ function FilterResult() {
           <option key={a.id}>{a.area}</option>
         ))}
       </datalist>
-      <button onClick={() => dispatch(setFilteredData(getFilteredArray()))}>
-        Search
+      <button
+        className="filter-button"
+        onClick={() => dispatch(setFilteredData(getFilteredArray()))}
+      >
+        Filter
       </button>
     </div>
   );
