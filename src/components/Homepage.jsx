@@ -1,6 +1,7 @@
 import React from "react";
 import JobList from "./JobList";
 import SearchJobs from "./SearchJobs";
+import FilterResult from "./FilterResult";
 import { useSelector } from "react-redux";
 
 function Homepage() {
@@ -12,7 +13,7 @@ function Homepage() {
           nameSearchText.length > 0 ? "d-flex" : "d-none"
         }`}
       >
-        a
+        <FilterResult />
       </div>
       <div
         className={`d-flex flex-column justify-content-center align-items-center search-list-wrapper ${

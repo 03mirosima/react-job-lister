@@ -17,6 +17,9 @@ const jobsSlice = createSlice({
     nameSearchText: "",
     selectedCompany: "",
     searchedData: [],
+    jobSearchText: "",
+    selectedArea: "",
+    filteredData: [],
   },
   reducers: {
     setNameSearchText: {
@@ -36,6 +39,23 @@ const jobsSlice = createSlice({
         state.searchedData = action.payload;
       },
     },
+    setJobSearchText: {
+      reducer: (state, action) => {
+        state.jobSearchText = action.payload;
+      },
+      prepare: (event) => ({ payload: event.target.value || "" }),
+    },
+    setSelectedArea: {
+      reducer: (state, action) => {
+        state.selectedArea = action.payload;
+      },
+      prepare: (event) => ({ payload: event.target.value || "" }),
+    },
+    setFilteredData: {
+      reducer: (state, action) => {
+        state.searchedData = action.payload;
+      },
+    },
   },
   extraReducers: {
     [getJobs.fulfilled]: (state, { payload }) => {
@@ -44,6 +64,12 @@ const jobsSlice = createSlice({
   },
 });
 export const selectAllJobs = (state) => state.jobs.list;
-export const { setNameSearchText, setSelectedCompany, setSearchedData } =
-  jobsSlice.actions;
+export const {
+  setNameSearchText,
+  setSelectedCompany,
+  setSearchedData,
+  setJobSearchText,
+  setFilteredData,
+  setSelectedArea,
+} = jobsSlice.actions;
 export default jobsSlice.reducer;
